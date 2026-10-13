@@ -9,7 +9,7 @@ server/data/
 contracts/artifacts/
 contracts/cache/
 web/dist/
-shared/deployments/*.json
+shared/deployments/31337.json
 test-results/
 playwright-report/
 *.tsbuildinfo
