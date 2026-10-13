@@ -1,0 +1,13 @@
+{
+  "name": "@ballot/web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "check": "vue-tsc --noEmit -p tsconfig.json",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@fontsource-variable/manrope": "5.3.0"
+  }
+}

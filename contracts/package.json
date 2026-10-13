@@ -1,0 +1,19 @@
+{
+  "name": "@ballot/contracts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "compile": "hardhat build",
+    "test": "hardhat test mocha",
+    "node": "hardhat node --hostname 127.0.0.1",
+    "deploy": "hardhat run scripts/deploy.ts --network localhost",
+    "deploy:sepolia": "hardhat run scripts/deploy.ts --network sepolia",
+    "test:tasks": "hardhat test mocha test/StudentTasks.ts",
+    "test:task1": "hardhat test mocha test/StudentTasks.ts --grep \"^SC-01 \"",
+    "test:task2": "hardhat test mocha test/StudentTasks.ts --grep \"^SC-02 \"",
+    "test:task3": "hardhat test mocha test/StudentTasks.ts --grep \"^SC-03 \""
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "5.4.0"
+  }
+}

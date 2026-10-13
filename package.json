@@ -1,0 +1,71 @@
+{
+  "name": "voting-student-starter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "contracts",
+    "server",
+    "web"
+  ],
+  "engines": {
+    "node": ">=24.12.0"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "chain": "npm run node --workspace contracts",
+    "compile": "npm run compile --workspace contracts",
+    "deploy": "npm run deploy --workspace contracts",
+    "seed": "tsx scripts/seed.ts",
+    "test": "npm run test --workspace contracts && npm run test --workspace server",
+    "check": "npm run check --workspaces --if-present",
+    "build": "npm run build --workspace web",
+    "test:e2e": "playwright test",
+    "dev:sepolia": "node scripts/sepolia.mjs",
+    "deploy:sepolia": "npm run deploy:sepolia --workspace contracts",
+    "check:contract": "node scripts/check-student-contract.mjs",
+    "test:tasks": "npm run test:tasks --workspace contracts",
+    "test:task1": "npm run test:task1 --workspace contracts",
+    "test:task2": "npm run test:task2 --workspace contracts",
+    "test:task3": "npm run test:task3 --workspace contracts",
+    "verify": "npm run check:contract && npm test && npm run check && npm run build",
+    "predev": "npm run check:contract && npm run test --workspace contracts",
+    "predev:sepolia": "npm run check:contract && npm run test --workspace contracts",
+    "predeploy:sepolia": "npm run check:contract && npm run test --workspace contracts",
+    "prestart:sepolia": "npm run check:contract",
+    "start:sepolia": "node scripts/serve-sepolia.mjs"
+  },
+  "dependencies": {
+    "@phosphor-icons/vue": "2.2.1",
+    "cookie-parser": "1.4.7",
+    "ethers": "6.17.0",
+    "express": "5.3.0",
+    "express-rate-limit": "8.7.1",
+    "helmet": "8.3.0",
+    "pinia": "3.0.4",
+    "siwe": "3.0.0",
+    "vue": "3.5.43",
+    "vue-router": "4.6.4",
+    "zod": "4.6.6"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "4.2.0",
+    "@nomicfoundation/hardhat-ethers-chai-matchers": "3.0.12",
+    "@nomicfoundation/hardhat-mocha": "3.1.0",
+    "@playwright/test": "1.64.0",
+    "@types/chai": "5.2.3",
+    "@types/cookie-parser": "1.4.10",
+    "@types/express": "5.0.6",
+    "@types/mocha": "10.0.10",
+    "@types/node": "26.6.5",
+    "@vitejs/plugin-vue": "6.0.10",
+    "chai": "6.3.0",
+    "hardhat": "3.19.0",
+    "mocha": "11.8.0",
+    "solc": "0.8.30",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "vite": "8.3.4",
+    "vue-tsc": "3.3.13"
+  }
+}

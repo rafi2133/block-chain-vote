@@ -1,0 +1,270 @@
+{
+  "edition": "student-v1",
+  "tasks": [
+    "SC-01 createElection",
+    "SC-02 vote",
+    "SC-03 getResults"
+  ],
+  "files": [
+    {
+      "path": ".env.example",
+      "sha256": "32845458dee68e686284059a6a5fec090f683236c0155d683a0cf9d5fc89d72c"
+    },
+    {
+      "path": ".env.production.example",
+      "sha256": "33d373ad44ce9cd0d6efd63ba729b0260aca2039f629594355777fa26e7ba3e2"
+    },
+    {
+      "path": ".env.sepolia.example",
+      "sha256": "2b79b34c6daedb75de080c433c52406f8bc6075bcc436c946db6e3be56984dd4"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "24f4a2f78951e64aad0daf1fe0450af06475bf37ad344754e2a19f176aa3d1a8"
+    },
+    {
+      "path": "README.md",
+      "sha256": "363ca74b1d5e23b5d72a06a1831f6caf0585beb27666024c48b902190fa9dc67"
+    },
+    {
+      "path": "contracts/contracts/VoteToken.sol",
+      "sha256": "2af776983430fae33d2e6f621a54293cbb463bc0f009de2c0775964dc59b0485"
+    },
+    {
+      "path": "contracts/contracts/Voting.sol",
+      "sha256": "c987840194133da9499dbcc96a22ccc2caaa19eef5b811605986108aaf4b4a75"
+    },
+    {
+      "path": "contracts/hardhat.config.ts",
+      "sha256": "98715a1bbdf4321fee2d87720945a45fe6855aeecd4cb5043e6e7450d594e6df"
+    },
+    {
+      "path": "contracts/package.json",
+      "sha256": "df07a03de731cda0719c31856eefdc6e8df34fb5f9f424ccf4d444b7af2ec076"
+    },
+    {
+      "path": "contracts/scripts/deploy.ts",
+      "sha256": "dacbfc336196dca4ef0ec9b84c72486eb074561d69eb55fce370507039e002e3"
+    },
+    {
+      "path": "contracts/test/StudentTasks.ts",
+      "sha256": "1223d52282bfcfb8c99d5e5ce152d76bcb455682171c66279d99b50a2e522438"
+    },
+    {
+      "path": "contracts/test/Voting.ts",
+      "sha256": "fc29602843b916ccc635fb0d330b77732df3c53d22c2a0aa5cc747087fc0cbd9"
+    },
+    {
+      "path": "docs/ASSIGNMENT.md",
+      "sha256": "bc0b8e9cc4881745d45125667fa4ba246b8b3fe16d7eb848020bac45cde9302a"
+    },
+    {
+      "path": "docs/CONTRACT_PSEUDOCODE.md",
+      "sha256": "6490201a527b58b934540400a1e6445f14c16629a082435d85dcf1cde85d60f3"
+    },
+    {
+      "path": "docs/DEPLOYMENT.md",
+      "sha256": "6bc56bf0f5bbacb1bb7f6f679305be748b44207a8b978ea43c377d95570b9273"
+    },
+    {
+      "path": "docs/diagrams/voting-contract-flow.drawio",
+      "sha256": "1a2fe64a38de7618e5ffdacc3454de6711456bb4c4bd41ed14326ff568018f24"
+    },
+    {
+      "path": "docs/diagrams/voting-contract-flow.drawio.png",
+      "sha256": "c077e6cd4959cf48d092e604689ca04d01f59230efdfeda9902c000ca35d6c4a"
+    },
+    {
+      "path": "docs/diagrams/voting-contract-lifecycle.drawio.png",
+      "sha256": "0033f0c36b12659cdd297820ae994acf65c27fdd429451cfc4f507f00b3dea1c"
+    },
+    {
+      "path": "docs/diagrams/voting-system-architecture.drawio",
+      "sha256": "9b1a90b9267cb3d1f5f3cb1e2ba0d5fa4ac943c6b426be2e7cce3b0c7944283b"
+    },
+    {
+      "path": "docs/diagrams/voting-system-architecture.drawio.png",
+      "sha256": "ad9f4b550fdddfc43b808c0fdf69e45801f3dcc060e6fd4f003998ea07efae6c"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "62346a35fa38032f6e1f05ff4ce22719bf25bf582686b5e44709821b86d5a48f"
+    },
+    {
+      "path": "package.json",
+      "sha256": "ed52f07f7aa3339bfdaa6f6e37af585e3475257f4f9b4cb71a3a535791366c36"
+    },
+    {
+      "path": "playwright.config.ts",
+      "sha256": "f861d280c23b8c1156bcf9f2c5516f7197bf9c71eb756b6acd988ba731cae72c"
+    },
+    {
+      "path": "scripts/check-student-contract.mjs",
+      "sha256": "c9df734b93730441328f895a57d7285c002211245c0e6e1e10881373798484f7"
+    },
+    {
+      "path": "scripts/dev.mjs",
+      "sha256": "ca67b7e9645b0a5b845b43b84d13cc7f8a6952a1e2ea5a0cadbf44a7e0264180"
+    },
+    {
+      "path": "scripts/seed.ts",
+      "sha256": "14dc27eb8527c021eae0602253837df82da18e13a88aefdafa271d7c9aa34e13"
+    },
+    {
+      "path": "scripts/sepolia.mjs",
+      "sha256": "fbaeadd3b87f9c642636ad77ebc6ece97bb1b2393d88e9252c5a661c6ddd8976"
+    },
+    {
+      "path": "scripts/serve-sepolia.mjs",
+      "sha256": "78345eab12a2d5a6aa81ea56365b5979083e275951c77bb69ca6f57f63dc427f"
+    },
+    {
+      "path": "server/package.json",
+      "sha256": "acf594af3d2aa1af7e0322966c78dbefbf35b3d2e1c9ae9ad58078cdeff214a7"
+    },
+    {
+      "path": "server/src/app.ts",
+      "sha256": "1c981d390dc0712ab9d0d19727b232c172b055dfe280f9b345e50932ef0ed055"
+    },
+    {
+      "path": "server/src/chain.ts",
+      "sha256": "767be6f0610497b4c51791173aad6d1dcf30d078746ecb88d6c19c43da70cda6"
+    },
+    {
+      "path": "server/src/index.ts",
+      "sha256": "6568bfaa275211df10e5d8df163b3531715426c0d6db4567733b32c22ff1fa8a"
+    },
+    {
+      "path": "server/src/sepolia.ts",
+      "sha256": "f48c51087bb68f34bc0eabceeb0117b27390d24c0a2bb8909ad1ad369115e22f"
+    },
+    {
+      "path": "server/src/store.ts",
+      "sha256": "631897158f267eb1e6568d960327658eac233091ee1fe9ac741059e9f4837007"
+    },
+    {
+      "path": "server/test/app.test.ts",
+      "sha256": "31d4e270a79fe4f159bbe761e2631ccb69e586332c79488c835c24ef80de0918"
+    },
+    {
+      "path": "server/test/chain.test.ts",
+      "sha256": "e0c487b81b222b16d2faf0198a8f80cdeba06e6af17c0379f592c0d8cf456e64"
+    },
+    {
+      "path": "server/test/deployment.test.ts",
+      "sha256": "352d5a7d74f920a873948e08038986fc45cf7f3a8be9cffa5eaef804283fec22"
+    },
+    {
+      "path": "server/tsconfig.json",
+      "sha256": "cf60ef386e70bc1a3e0b72d9cc52d771e6b0cfb3e9d6050e13a2de717bbb4fe7"
+    },
+    {
+      "path": "shared/demo.ts",
+      "sha256": "e74ad60e1bcd10fb1bfd33eb050eefb93e6c8e09c8a7081b8ac49b33773e47c2"
+    },
+    {
+      "path": "shared/deployment.ts",
+      "sha256": "44b429143f8a5b6a27f13d9e72cc516f3273cdf94f341669edc437e7f7fc8ff8"
+    },
+    {
+      "path": "shared/sepolia.ts",
+      "sha256": "490e32f274dc249f0a7942a266dcb5accc9ce138b5646d36eb56170df78b8b3e"
+    },
+    {
+      "path": "shared/types.ts",
+      "sha256": "e0875db3864050cd1f097fc0bc5be9dc65d0e2c5ae1558afcfb34960c94e94a3"
+    },
+    {
+      "path": "tests/e2e/sepolia.spec.ts",
+      "sha256": "009a22fb288fca6b34f40df9b39c74cbcb7104ce85d556bdef644fa7e563a730"
+    },
+    {
+      "path": "tests/e2e/voting.spec.ts",
+      "sha256": "5339a44ebc0ab1807eeb33b532995c421931a7a2472ea131dd64264c40b20945"
+    },
+    {
+      "path": "tests/e2e/wallet.ts",
+      "sha256": "cddc127c6ecd988d05f8b192c6aca6e84f6ba924e6efec694ec9cc4664e45112"
+    },
+    {
+      "path": "tools.txt",
+      "sha256": "03115cd612eb982eac930c0e99adafd98a10c61dde31006201c6ab3a828d0538"
+    },
+    {
+      "path": "tsconfig.base.json",
+      "sha256": "500e5a820c7d45ad36e3986f033c9fc201777c74f3a4f3c18fb3016fc6a7af8a"
+    },
+    {
+      "path": "web/index.html",
+      "sha256": "fd1bdf8c70274eb8edef039b45898fb4f7dcb0dea70e0aa12e283510e72c69c8"
+    },
+    {
+      "path": "web/package.json",
+      "sha256": "b152821d3fac082cfe9b22ded4972fe2b89318bd9796d88ed9c6e54396e9b3dd"
+    },
+    {
+      "path": "web/src/App.vue",
+      "sha256": "551a488ff3868c0e5aa95abf96af56f5af82994cc2bdec75e7076be0cb8101e1"
+    },
+    {
+      "path": "web/src/env.d.ts",
+      "sha256": "731dfbc29d8933c2715bf0f7e08640b71c4aa8ea472b71a0144e18a714515ba4"
+    },
+    {
+      "path": "web/src/local-test-accounts.ts",
+      "sha256": "c647294051716ad3eb862c88932280cece7123571e35f7c8987382296ebf00e8"
+    },
+    {
+      "path": "web/src/main.ts",
+      "sha256": "0ed0eade1d3867c84494aaf876d34c17e6dc08ab80aa431bb7bf4850e0612fb8"
+    },
+    {
+      "path": "web/src/metamask.ts",
+      "sha256": "2ff1128d0e6b0192f44f9bcebfa3a4efd0a233ba3d0fc5a5d29b90fbd1e27544"
+    },
+    {
+      "path": "web/src/router.ts",
+      "sha256": "9e17cb59256bb92db5479d117390f2ca87c0589c63c63e24e645070b3c50c42f"
+    },
+    {
+      "path": "web/src/store.ts",
+      "sha256": "6bf7737dee5efc483ca390b88058e128ba03f7172b7a742b06e247f1522d7b3a"
+    },
+    {
+      "path": "web/src/style.css",
+      "sha256": "f78dcedccc59c8812a90b6d971173b65f45227d57ae39b76060c6e484468c7ad"
+    },
+    {
+      "path": "web/src/views/ActivityView.vue",
+      "sha256": "ddeac1f87fa29477beceb4c0d01a274b1e037406543bf5c787123614ddc0572c"
+    },
+    {
+      "path": "web/src/views/CreateView.vue",
+      "sha256": "db92fc6b003969b20edb089326a06844dd3e3353538cc443c966d2f4294c5187"
+    },
+    {
+      "path": "web/src/views/ElectionView.vue",
+      "sha256": "ad846744d8b27570898b01926efa8aeeed453ef4f67b2a646bf162e95e09aa99"
+    },
+    {
+      "path": "web/src/views/ElectionsView.vue",
+      "sha256": "ee281d67c55405b484aaf7d8b9a4460457f58d56f5e37ca46558720206bad3e5"
+    },
+    {
+      "path": "web/src/views/SepoliaView.vue",
+      "sha256": "ef1cbed57dd8a51a3bf48931de2c71471b53b992fbe063474b145bccfb90fd0a"
+    },
+    {
+      "path": "web/src/views/WalletView.vue",
+      "sha256": "75986847fd1ce6953c9f299efe430c57b16cf59425ce43ad1b7674f44ce32a84"
+    },
+    {
+      "path": "web/tsconfig.json",
+      "sha256": "392724083dd3c121f2180932cfa053160f128b763298393c780d8eada55374f2"
+    },
+    {
+      "path": "web/vite.config.ts",
+      "sha256": "5831adb39eaf3b075b942892bed8a1c6db3bbdddc426d5d8f41fd0f97dee79c4"
+    }
+  ]
+}

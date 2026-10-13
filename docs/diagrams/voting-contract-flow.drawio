@@ -1,0 +1,490 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="Electron" version="31.4.4">
+  <diagram id="vote-execution" name="Vote Execution">
+    <mxGraphModel dx="1800" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2430" pageHeight="2390" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Voting Smart Contract — Vote Execution" vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontSize=40;fontStyle=1;fontColor=#203047;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="60" y="20" width="2300" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Source: Voting.sol · vote(electionId, candidateId) · Exact check / write / call / event order" vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontSize=23;fontStyle=0;fontColor=#52677E;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="60" y="95" width="2300" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="validation" value="01  Validation" vertex="1" parent="1" style="swimlane;startSize=55;container=1;collapsible=0;pointerEvents=0;html=1;whiteSpace=wrap;fillColor=#F3F6FA;swimlaneFillColor=#FFFFFF;strokeColor=#CFD7E3;strokeWidth=2;fontFamily=Arial;fontSize=26;fontStyle=1;fontColor=#203047;align=left;spacingLeft=20;">
+          <mxGeometry x="60" y="150" width="1080" height="1970" as="geometry" />
+        </mxCell>
+        <mxCell id="execution" value="02  Atomic execution" vertex="1" parent="1" style="swimlane;startSize=55;container=1;collapsible=0;pointerEvents=0;html=1;whiteSpace=wrap;fillColor=#F3F6FA;swimlaneFillColor=#FFFFFF;strokeColor=#CFD7E3;strokeWidth=2;fontFamily=Arial;fontSize=26;fontStyle=1;fontColor=#203047;align=left;spacingLeft=20;">
+          <mxGeometry x="1240" y="150" width="1130" height="1970" as="geometry" />
+        </mxCell>
+        <UserObject id="vote_start" label="&lt;b&gt;vote(electionId, candidateId)&lt;/b&gt;&lt;br&gt;Voter = msg.sender" data-source="contracts/contracts/Voting.sol" data-role="success">
+          <mxCell vertex="1" parent="validation" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="50" y="60" width="400" height="95" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="guard_free" label="Reentrancy guard&lt;br&gt;available?" data-source="@openzeppelin/contracts/utils/ReentrancyGuard.sol#nonReentrant" data-role="decision">
+          <mxCell vertex="1" parent="validation" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="50" y="210" width="400" height="160" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="revert_guard_free" label="&lt;b&gt;REVERT&lt;/b&gt;&lt;br&gt;ReentrancyGuardReentrantCall" data-source="contracts/contracts/Voting.sol" data-role="error">
+          <mxCell vertex="1" parent="validation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;strokeWidth=2;fontFamily=Arial;fontSize=22;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="620" y="230" width="420" height="120" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="fail_guard_free" value="No" source="guard_free" target="revert_guard_free" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#B85450;fontFamily=Arial;fontSize=21;fontColor=#B85450;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="enter_guard" value="" source="vote_start" target="guard_free" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject id="exists" label="Election exists?&lt;br&gt;creator != zero address" data-source="contracts/contracts/Voting.sol#vote" data-role="decision">
+          <mxCell vertex="1" parent="validation" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="50" y="450" width="400" height="160" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="revert_exists" label="&lt;b&gt;REVERT&lt;/b&gt;&lt;br&gt;ElectionNotFound" data-source="contracts/contracts/Voting.sol" data-role="error">
+          <mxCell vertex="1" parent="validation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;strokeWidth=2;fontFamily=Arial;fontSize=22;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="620" y="470" width="420" height="120" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="fail_exists" value="No" source="exists" target="revert_exists" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#B85450;fontFamily=Arial;fontSize=21;fontColor=#B85450;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pass_guard_free" value="Yes · lock guard" source="guard_free" target="exists" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="80" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject id="published" label="Election&lt;br&gt;published?" data-source="contracts/contracts/Voting.sol#vote" data-role="decision">
+          <mxCell vertex="1" parent="validation" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="50" y="690" width="400" height="160" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="revert_published" label="&lt;b&gt;REVERT&lt;/b&gt;&lt;br&gt;NotPublished" data-source="contracts/contracts/Voting.sol" data-role="error">
+          <mxCell vertex="1" parent="validation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;strokeWidth=2;fontFamily=Arial;fontSize=22;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="620" y="710" width="420" height="120" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="fail_published" value="No" source="published" target="revert_published" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#B85450;fontFamily=Arial;fontSize=21;fontColor=#B85450;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pass_exists" value="Yes" source="exists" target="published" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="30" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject id="window" label="startsAt ≤ now&lt;br&gt;AND now &amp;lt; endsAt?" data-source="contracts/contracts/Voting.sol#vote" data-role="decision">
+          <mxCell vertex="1" parent="validation" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="50" y="930" width="400" height="160" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="revert_window" label="&lt;b&gt;REVERT&lt;/b&gt;&lt;br&gt;VotingNotOpen" data-source="contracts/contracts/Voting.sol" data-role="error">
+          <mxCell vertex="1" parent="validation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;strokeWidth=2;fontFamily=Arial;fontSize=22;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="620" y="950" width="420" height="120" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="fail_window" value="No" source="window" target="revert_window" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#B85450;fontFamily=Arial;fontSize=21;fontColor=#B85450;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pass_published" value="Yes" source="published" target="window" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="30" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject id="eligible" label="Voter is&lt;br&gt;eligible?" data-source="contracts/contracts/Voting.sol#vote" data-role="decision">
+          <mxCell vertex="1" parent="validation" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="50" y="1170" width="400" height="160" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="revert_eligible" label="&lt;b&gt;REVERT&lt;/b&gt;&lt;br&gt;NotEligible" data-source="contracts/contracts/Voting.sol" data-role="error">
+          <mxCell vertex="1" parent="validation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;strokeWidth=2;fontFamily=Arial;fontSize=22;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="620" y="1190" width="420" height="120" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="fail_eligible" value="No" source="eligible" target="revert_eligible" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#B85450;fontFamily=Arial;fontSize=21;fontColor=#B85450;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pass_window" value="Yes" source="window" target="eligible" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="30" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject id="repeat" label="Voter already&lt;br&gt;voted?" data-source="contracts/contracts/Voting.sol#vote" data-role="decision">
+          <mxCell vertex="1" parent="validation" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="50" y="1410" width="400" height="160" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="revert_repeat" label="&lt;b&gt;REVERT&lt;/b&gt;&lt;br&gt;AlreadyVoted" data-source="contracts/contracts/Voting.sol" data-role="error">
+          <mxCell vertex="1" parent="validation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;strokeWidth=2;fontFamily=Arial;fontSize=22;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="620" y="1430" width="420" height="120" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="fail_repeat" value="Yes" source="repeat" target="revert_repeat" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#B85450;fontFamily=Arial;fontSize=21;fontColor=#B85450;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pass_eligible" value="Yes" source="eligible" target="repeat" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="30" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject id="candidate" label="candidateId &amp;lt;&lt;br&gt;candidateCount?" data-source="contracts/contracts/Voting.sol#vote" data-role="decision">
+          <mxCell vertex="1" parent="validation" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="50" y="1650" width="400" height="160" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="revert_candidate" label="&lt;b&gt;REVERT&lt;/b&gt;&lt;br&gt;InvalidCandidate" data-source="contracts/contracts/Voting.sol" data-role="error">
+          <mxCell vertex="1" parent="validation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;strokeWidth=2;fontFamily=Arial;fontSize=22;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="620" y="1670" width="420" height="120" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="fail_candidate" value="No" source="candidate" target="revert_candidate" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#B85450;fontFamily=Arial;fontSize=21;fontColor=#B85450;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pass_repeat" value="No" source="repeat" target="candidate" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="30" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject id="write_state" label="&lt;b&gt;Provisional state writes&lt;/b&gt;&lt;br&gt;hasVoted[id][voter] = true&lt;br&gt;voteCounts[id][candidateId] += 1&lt;br&gt;election.totalVotes += 1" data-source="contracts/contracts/Voting.sol" data-role="process">
+          <mxCell vertex="1" parent="execution" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="50" y="60" width="480" height="220" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="burn_call" label="&lt;b&gt;Token.burnFrom(voter, 10^18)&lt;/b&gt;&lt;br&gt;Voting contract = spender&lt;br&gt;Destroy 1 whole Token" data-source="contracts/contracts/Voting.sol#vote; Token#burnFrom" data-role="token">
+          <mxCell vertex="1" parent="execution" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="50" y="400" width="480" height="150" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="burn_ok" label="Burn call&lt;br&gt;successful?" data-source="contracts/contracts/Voting.sol" data-role="decision">
+          <mxCell vertex="1" parent="execution" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="90" y="690" width="400" height="190" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="burn_failed" label="&lt;b&gt;REVERT&lt;/b&gt;&lt;br&gt;Propagate the Token error&lt;br&gt;Roll back voting + Token state" data-source="contracts/contracts/Voting.sol" data-role="error">
+          <mxCell vertex="1" parent="execution" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;strokeWidth=2;fontFamily=Arial;fontSize=22;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="660" y="715" width="420" height="140" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="events" label="&lt;b&gt;Emit events, in order&lt;/b&gt;&lt;br&gt;1. VoteTokenBurned&lt;br&gt;2. VoteCast" data-source="contracts/contracts/Voting.sol" data-role="process">
+          <mxCell vertex="1" parent="execution" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="50" y="1000" width="480" height="150" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="unlock" label="Release reentrancy guard&lt;br&gt;NOT_ENTERED" data-source="@openzeppelin/contracts/utils/ReentrancyGuard.sol#nonReentrant" data-role="process">
+          <mxCell vertex="1" parent="execution" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="50" y="1280" width="480" height="100" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="success" label="&lt;b&gt;Vote succeeds&lt;/b&gt;&lt;br&gt;Counts + burned Token persist" data-source="contracts/contracts/Voting.sol" data-role="success">
+          <mxCell vertex="1" parent="execution" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="50" y="1510" width="480" height="120" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="atomic_note" label="&lt;b&gt;Atomicity&lt;/b&gt;&lt;br&gt;burnFrom is a void call: success means no revert.&lt;br&gt;Earlier voting writes remain provisional&lt;br&gt;until the whole transaction succeeds.&lt;br&gt;eligible[id][voter] stays unchanged." data-source="contracts/contracts/Voting.sol" data-role="note">
+          <mxCell vertex="1" parent="execution" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#9AA4B0;strokeWidth=2;fontFamily=Arial;fontSize=22;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;align=left;spacingLeft=22;">
+            <mxGeometry x="50" y="1740" width="1000" height="170" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="all_checks_pass" value="Yes" source="candidate" target="write_state" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry x="-0.96" y="0" relative="1" as="geometry">
+            <mxPoint x="30" y="0" as="offset" />
+            <Array as="points">
+              <mxPoint x="310" y="2060" />
+              <mxPoint x="1190" y="2060" />
+              <mxPoint x="1190" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="phase_handoff" value="All checks passed → Atomic execution" vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontSize=22;fontStyle=1;fontColor=#203047;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="470" y="1990" width="640" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="write_then_burn" value="" source="write_state" target="burn_call" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="call_outcome" value="" source="burn_call" target="burn_ok" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="burn_revert" value="No" source="burn_ok" target="burn_failed" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#B85450;fontFamily=Arial;fontSize=21;fontColor=#B85450;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="burn_success" value="Yes" source="burn_ok" target="events" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="30" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="events_then_unlock" value="" source="events" target="unlock" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="unlock_then_return" value="" source="unlock" target="success" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rollback_note" value="Any red branch aborts that vote. Its state writes and event logs roll back; the transaction may still consume ETH Gas." vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontSize=22;fontStyle=0;fontColor=#203047;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="60" y="2160" width="2300" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_decision" value="" vertex="1" parent="1" style="rounded=0;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;">
+          <mxGeometry x="60" y="2240" width="24" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_label_decision" value="Condition" vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontSize=21;fontStyle=0;fontColor=#203047;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="100" y="2235" width="370" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_process" value="" vertex="1" parent="1" style="rounded=0;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;">
+          <mxGeometry x="500" y="2240" width="24" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_label_process" value="State / process" vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontSize=21;fontStyle=0;fontColor=#203047;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="540" y="2235" width="370" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_token" value="" vertex="1" parent="1" style="rounded=0;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;strokeWidth=2;">
+          <mxGeometry x="940" y="2240" width="24" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_label_token" value="Token call" vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontSize=21;fontStyle=0;fontColor=#203047;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="980" y="2235" width="370" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_success" value="" vertex="1" parent="1" style="rounded=0;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;">
+          <mxGeometry x="1380" y="2240" width="24" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_label_success" value="Success / state" vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontSize=21;fontStyle=0;fontColor=#203047;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="1420" y="2235" width="370" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_error" value="" vertex="1" parent="1" style="rounded=0;html=1;fillColor=#F8CECC;strokeColor=#B85450;strokeWidth=2;">
+          <mxGeometry x="1820" y="2240" width="24" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_label_error" value="Revert" vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontSize=21;fontStyle=0;fontColor=#203047;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="1860" y="2235" width="370" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="token_context" value="Sepolia: 1 TOM = 10^18 base units. Token approval is a separate MetaMask transaction before vote()." vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontSize=22;fontStyle=0;fontColor=#52677E;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="60" y="2310" width="2300" height="45" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="election-lifecycle" name="Election Lifecycle">
+    <mxGraphModel dx="1800" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1990" pageHeight="1950" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Voting Smart Contract — Election Lifecycle" vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontSize=38;fontStyle=1;fontColor=#203047;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="50" y="20" width="1890" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Preparation and publication on the left; independent state and result reads on the right / below" vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontSize=23;fontStyle=0;fontColor=#52677E;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="50" y="95" width="1890" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="prepare" value="01  Create → Configure → Publish" vertex="1" parent="1" style="swimlane;startSize=55;container=1;collapsible=0;pointerEvents=0;html=1;whiteSpace=wrap;fillColor=#F3F6FA;swimlaneFillColor=#FFFFFF;strokeColor=#CFD7E3;strokeWidth=2;fontFamily=Arial;fontSize=26;fontStyle=1;fontColor=#203047;align=left;spacingLeft=20;">
+          <mxGeometry x="50" y="150" width="850" height="1280" as="geometry" />
+        </mxCell>
+        <mxCell id="read_state" value="02  getState(electionId)" vertex="1" parent="1" style="swimlane;startSize=55;container=1;collapsible=0;pointerEvents=0;html=1;whiteSpace=wrap;fillColor=#F3F6FA;swimlaneFillColor=#FFFFFF;strokeColor=#CFD7E3;strokeWidth=2;fontFamily=Arial;fontSize=26;fontStyle=1;fontColor=#203047;align=left;spacingLeft=20;">
+          <mxGeometry x="990" y="150" width="940" height="1280" as="geometry" />
+        </mxCell>
+        <UserObject id="create" label="&lt;b&gt;createElection(...)&lt;/b&gt;&lt;br&gt;Admin only · validate configuration" data-source="contracts/contracts/Voting.sol" data-role="process">
+          <mxCell vertex="1" parent="prepare" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="100" y="70" width="570" height="100" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="draft" label="&lt;b&gt;Draft election&lt;/b&gt;&lt;br&gt;published = false&lt;br&gt;eligibleVoterCount = totalVotes = 0" data-source="contracts/contracts/Voting.sol" data-role="process">
+          <mxCell vertex="1" parent="prepare" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="100" y="250" width="570" height="130" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="configure" label="&lt;b&gt;Configure the draft&lt;/b&gt;&lt;br&gt;Optional: updateDraft(...)&lt;br&gt;Required: setEligibility(..., true)&lt;br&gt;1–100 addresses per eligibility call" data-source="contracts/contracts/Voting.sol" data-role="process">
+          <mxCell vertex="1" parent="prepare" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="100" y="470" width="570" height="170" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="publish_call" label="&lt;b&gt;publishElection(id)&lt;/b&gt;&lt;br&gt;Creator only · unpublished draft&lt;br&gt;now &amp;lt; startsAt&lt;br&gt;eligibleVoterCount &amp;gt; 0" data-source="contracts/contracts/Voting.sol" data-role="process">
+          <mxCell vertex="1" parent="prepare" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="100" y="750" width="570" height="170" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="frozen" label="&lt;b&gt;Published · configuration frozen&lt;/b&gt;&lt;br&gt;Emit ElectionPublished" data-source="contracts/contracts/Voting.sol" data-role="success">
+          <mxCell vertex="1" parent="prepare" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="100" y="1030" width="570" height="110" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="config_note" label="Configuration: 2–20 candidates; metadataHash != 0;&lt;br&gt;startsAt &amp;gt; now; endsAt &amp;gt; startsAt.&lt;br&gt;Draft operations revert after publication." data-source="contracts/contracts/Voting.sol" data-role="note">
+          <mxCell vertex="1" parent="prepare" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#9AA4B0;strokeWidth=2;fontFamily=Arial;fontSize=21;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="30" y="1170" width="790" height="90" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="create_to_draft" value="" source="create" target="draft" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="draft_to_configure" value="" source="draft" target="configure" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="configure_to_publish_call" value="" source="configure" target="publish_call" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="publish_call_to_frozen" value="" source="publish_call" target="frozen" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject id="state_exists" label="Election&lt;br&gt;exists?" data-source="contracts/contracts/Voting.sol" data-role="decision">
+          <mxCell vertex="1" parent="read_state" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="80" y="70" width="300" height="150" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="state_missing" label="&lt;b&gt;REVERT&lt;/b&gt;&lt;br&gt;ElectionNotFound" data-source="contracts/contracts/Voting.sol" data-role="error">
+          <mxCell vertex="1" parent="read_state" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;strokeWidth=2;fontFamily=Arial;fontSize=23;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="520" y="95" width="370" height="100" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="state_published" label="Election&lt;br&gt;published?" data-source="contracts/contracts/Voting.sol" data-role="decision">
+          <mxCell vertex="1" parent="read_state" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="80" y="320" width="300" height="150" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="state_draft" label="&lt;b&gt;RETURN Draft&lt;/b&gt;&lt;br&gt;Publication has not happened" data-source="contracts/contracts/Voting.sol" data-role="success">
+          <mxCell vertex="1" parent="read_state" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontFamily=Arial;fontSize=22;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="520" y="345" width="370" height="100" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="before_start" label="now &amp;lt; startsAt?" data-source="contracts/contracts/Voting.sol" data-role="decision">
+          <mxCell vertex="1" parent="read_state" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="80" y="570" width="300" height="150" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="state_scheduled" label="&lt;b&gt;RETURN Scheduled&lt;/b&gt;&lt;br&gt;Waiting for the start" data-source="contracts/contracts/Voting.sol" data-role="success">
+          <mxCell vertex="1" parent="read_state" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontFamily=Arial;fontSize=22;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="520" y="595" width="370" height="100" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="before_end" label="now &amp;lt; endsAt?" data-source="contracts/contracts/Voting.sol" data-role="decision">
+          <mxCell vertex="1" parent="read_state" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;fontFamily=Arial;fontSize=24;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="80" y="820" width="300" height="150" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="state_active" label="&lt;b&gt;RETURN Active&lt;/b&gt;&lt;br&gt;Voting window is open" data-source="contracts/contracts/Voting.sol" data-role="success">
+          <mxCell vertex="1" parent="read_state" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontFamily=Arial;fontSize=22;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="520" y="845" width="370" height="100" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="state_ended" label="&lt;b&gt;RETURN Ended&lt;/b&gt;&lt;br&gt;now ≥ endsAt" data-source="contracts/contracts/Voting.sol" data-role="success">
+          <mxCell vertex="1" parent="read_state" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontFamily=Arial;fontSize=22;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="60" y="1090" width="340" height="100" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="state_exists_branch" value="No" source="state_exists" target="state_missing" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#B85450;fontFamily=Arial;fontSize=21;fontColor=#B85450;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="state_published_branch" value="No" source="state_published" target="state_draft" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#588144;fontFamily=Arial;fontSize=21;fontColor=#588144;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="before_start_branch" value="Yes" source="before_start" target="state_scheduled" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#588144;fontFamily=Arial;fontSize=21;fontColor=#588144;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="before_end_branch" value="Yes" source="before_end" target="state_active" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#588144;fontFamily=Arial;fontSize=21;fontColor=#588144;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="0" y="-22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="state_exists_next" value="Yes" source="state_exists" target="state_published" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="30" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="state_published_next" value="Yes" source="state_published" target="before_start" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="30" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="before_start_next" value="No" source="before_start" target="before_end" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="30" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="before_end_next" value="No" source="before_end" target="state_ended" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;">
+          <mxGeometry x="0" y="0" relative="1" as="geometry">
+            <mxPoint x="30" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="independent_state" value="State reads do not require publication;&lt;br&gt;an unpublished election remains Draft." vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontSize=21;fontStyle=0;fontColor=#52677E;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="1030" y="1360" width="850" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="read_functions" value="03  Independent read functions (EXISTING check first)" vertex="1" parent="1" style="swimlane;startSize=55;container=1;collapsible=0;pointerEvents=0;html=1;whiteSpace=wrap;fillColor=#F3F6FA;swimlaneFillColor=#FFFFFF;strokeColor=#CFD7E3;strokeWidth=2;fontFamily=Arial;fontSize=26;fontStyle=1;fontColor=#203047;align=left;spacingLeft=20;">
+          <mxGeometry x="50" y="1490" width="1880" height="290" as="geometry" />
+        </mxCell>
+        <UserObject id="read_results" label="&lt;b&gt;getResults(id)&lt;/b&gt;&lt;br&gt;Copy every candidate count into an array.&lt;br&gt;No published / ended condition.&lt;br&gt;Live counts can be read before the end." data-source="contracts/contracts/Voting.sol" data-role="process">
+          <mxCell vertex="1" parent="read_functions" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontFamily=Arial;fontSize=23;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="40" y="70" width="700" height="180" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="read_voter" label="&lt;b&gt;getVoterStatus(id, wallet)&lt;/b&gt;&lt;br&gt;Return (eligible, hasVoted).&lt;br&gt;Wallet status is per election." data-source="contracts/contracts/Voting.sol" data-role="process">
+          <mxCell vertex="1" parent="read_functions" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontFamily=Arial;fontSize=23;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="790" y="70" width="510" height="180" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject id="read_election" label="&lt;b&gt;getElection(id)&lt;/b&gt;&lt;br&gt;Return election snapshot&lt;br&gt;and getState(id)." data-source="contracts/contracts/Voting.sol" data-role="process">
+          <mxCell vertex="1" parent="read_functions" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontFamily=Arial;fontSize=23;fontColor=#203047;align=center;verticalAlign=middle;spacing=12;shadow=0;">
+            <mxGeometry x="1350" y="70" width="480" height="180" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="time_note" value="States are derived from block.timestamp. There is no closeElection() or publishResults() transaction." vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontSize=22;fontStyle=0;fontColor=#203047;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="50" y="1800" width="1880" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_process" value="" vertex="1" parent="1" style="rounded=0;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;">
+          <mxGeometry x="50" y="1880" width="24" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_label_process" value="State / process" vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontSize=21;fontStyle=0;fontColor=#203047;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="90" y="1875" width="370" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_decision" value="" vertex="1" parent="1" style="rounded=0;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;">
+          <mxGeometry x="520" y="1880" width="24" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_label_decision" value="Condition" vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontSize=21;fontStyle=0;fontColor=#203047;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="560" y="1875" width="370" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_success" value="" vertex="1" parent="1" style="rounded=0;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;">
+          <mxGeometry x="990" y="1880" width="24" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_label_success" value="Success / state" vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontSize=21;fontStyle=0;fontColor=#203047;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="1030" y="1875" width="370" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_error" value="" vertex="1" parent="1" style="rounded=0;html=1;fillColor=#F8CECC;strokeColor=#B85450;strokeWidth=2;">
+          <mxGeometry x="1460" y="1880" width="24" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_label_error" value="Revert" vertex="1" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=none;strokeColor=none;fontFamily=Arial;fontSize=21;fontStyle=0;fontColor=#203047;align=left;verticalAlign=middle;spacing=0;">
+          <mxGeometry x="1500" y="1875" width="370" height="35" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

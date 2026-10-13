@@ -1,0 +1,152 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="voting-system-functional-architecture" name="System functional architecture">
+    <mxGraphModel dx="2417" dy="1731" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2130" pageHeight="1720" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=38;fontColor=#203047;fontStyle=1;strokeColor=none;fillColor=none;" value="Blockchain Voting System — Functional Architecture" vertex="1">
+          <mxGeometry height="60" width="2000" x="60" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=23;fontColor=#526579;fontStyle=0;strokeColor=none;fillColor=none;" value="Vue · Express · MetaMask · Hardhat · Sepolia  |  One successful vote burns 1 TOM" vertex="1">
+          <mxGeometry height="40" width="2000" x="60" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="browser" parent="1" style="swimlane;html=1;startSize=50;horizontal=1;container=1;collapsible=0;pointerEvents=0;rounded=1;arcSize=6;fillColor=#F3F6FA;swimlaneFillColor=#FFFFFF;strokeColor=#CBD5E1;strokeWidth=2;fontFamily=Arial;fontColor=#203047;fontSize=25;fontStyle=1;align=left;spacingLeft=20;" value="USER BROWSER" vertex="1">
+          <mxGeometry height="390" width="1140" x="50" y="150" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;div style=&quot;font-size:30px;font-weight:700;margin-bottom:14px&quot;&gt;Vue · Frontend&lt;/div&gt;&lt;div style=&quot;font-size:22px;line-height:1.5&quot;&gt;Election pages and candidates&lt;br&gt;Eligibility, balances and results&lt;br&gt;Request wallet confirmations&lt;br&gt;Verify metadata and track receipts&lt;/div&gt;" data-source="web/src/store.ts; web/src/views/" data-role="frontend" id="vue">
+          <mxCell parent="browser" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontFamily=Arial;fontColor=#203047;fontSize=22;align=left;verticalAlign=top;spacingTop=22;spacingLeft=22;spacingRight=18;spacingBottom=18;shadow=0;" vertex="1">
+            <mxGeometry height="280" width="420" x="30" y="70" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;div style=&quot;font-size:30px;font-weight:700;margin-bottom:14px&quot;&gt;MetaMask · Wallet&lt;/div&gt;&lt;div style=&quot;font-size:22px;line-height:1.5&quot;&gt;Connect accounts; switch network&lt;br&gt;Sign wallet-ownership messages&lt;br&gt;Confirm approvals and voting&lt;br&gt;Sign and broadcast transactions&lt;br&gt;Return transaction hashes&lt;/div&gt;" data-source="web/src/metamask.ts; web/src/store.ts" data-role="wallet" id="metamask">
+          <mxCell parent="browser" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;fontFamily=Arial;fontColor=#203047;fontSize=22;align=left;verticalAlign=top;spacingTop=22;spacingLeft=22;spacingRight=18;spacingBottom=18;shadow=0;" vertex="1">
+            <mxGeometry height="280" width="400" x="710" y="70" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="server" parent="1" style="swimlane;html=1;startSize=50;horizontal=1;container=1;collapsible=0;pointerEvents=0;rounded=1;arcSize=6;fillColor=#EEF5EC;swimlaneFillColor=#FFFFFF;strokeColor=#B8CEB1;strokeWidth=2;fontFamily=Arial;fontColor=#203047;fontSize=25;fontStyle=1;align=left;spacingLeft=20;" value="OFF-CHAIN SERVER" vertex="1">
+          <mxGeometry height="840" width="480" x="50" y="600" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;div style=&quot;font-size:30px;font-weight:700;margin-bottom:14px&quot;&gt;Express · API&lt;/div&gt;&lt;div style=&quot;font-size:22px;line-height:1.5&quot;&gt;App configuration and HTTP API&lt;br&gt;SIWE login and administrator checks&lt;br&gt;Prepare drafts and metadata hashes&lt;br&gt;Read chain state, receipts and logs&lt;br&gt;Index events; verify deployment&lt;br&gt;Read-only RPC gateway&lt;/div&gt;" data-source="server/src/app.ts; server/src/chain.ts; server/src/sepolia.ts" data-role="backend" id="express">
+          <mxCell parent="server" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontFamily=Arial;fontColor=#203047;fontSize=22;align=left;verticalAlign=top;spacingTop=22;spacingLeft=22;spacingRight=18;spacingBottom=18;shadow=0;" vertex="1">
+            <mxGeometry height="360" width="420" x="30" y="80" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;div style=&quot;font-size:28px;font-weight:700;margin-bottom:12px&quot;&gt;SQLite · Local storage&lt;/div&gt;&lt;div style=&quot;font-size:22px;line-height:1.5&quot;&gt;Metadata snapshots&lt;br&gt;Voter bindings and sessions&lt;br&gt;Event cache and index cursor&lt;/div&gt;" data-source="server/src/store.ts" data-role="database" id="sqlite">
+          <mxCell parent="server" style="shape=cylinder3;size=20;whiteSpace=wrap;html=1;fillColor=#E9F1E7;strokeColor=#82B366;strokeWidth=2;fontFamily=Arial;fontColor=#203047;fontSize=22;align=center;verticalAlign=middle;spacing=18;spacingTop=35;spacingBottom=10;" vertex="1">
+            <mxGeometry height="210" width="420" x="30" y="590" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="developer" parent="1" style="swimlane;html=1;startSize=50;horizontal=1;container=1;collapsible=0;pointerEvents=0;rounded=1;arcSize=6;fillColor=#F5F5F5;swimlaneFillColor=#FFFFFF;strokeColor=#B8C0C8;strokeWidth=2;fontFamily=Arial;fontColor=#203047;fontSize=25;fontStyle=1;align=left;spacingLeft=20;" value="DEVELOPMENT &amp; DEPLOYMENT" vertex="1">
+          <mxGeometry height="370" width="500" x="700" y="1070" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;div style=&quot;font-size:30px;font-weight:700;margin-bottom:14px&quot;&gt;Hardhat · Tooling&lt;/div&gt;&lt;div style=&quot;font-size:22px;line-height:1.5&quot;&gt;Compile Solidity contracts&lt;br&gt;Test rules on the local Hardhat chain&lt;br&gt;Generate ABI and bytecode&lt;br&gt;Optional CLI deployment to Sepolia&lt;/div&gt;" data-source="contracts/hardhat.config.ts; contracts/scripts/deploy.ts; contracts/test/Voting.ts" data-role="tooling" id="hardhat">
+          <mxCell parent="developer" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;strokeWidth=2;fontFamily=Arial;fontColor=#203047;fontSize=22;align=left;verticalAlign=top;spacingTop=22;spacingLeft=22;spacingRight=18;spacingBottom=18;shadow=0;" vertex="1">
+            <mxGeometry height="280" width="400" x="60" y="70" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="sepolia" parent="1" style="swimlane;html=1;startSize=50;horizontal=1;container=1;collapsible=0;pointerEvents=0;rounded=1;arcSize=6;fillColor=#EEE8F3;swimlaneFillColor=#FFFFFF;strokeColor=#AD94BC;strokeWidth=2;fontFamily=Arial;fontColor=#203047;fontSize=25;fontStyle=1;align=left;spacingLeft=20;" value="SEPOLIA TESTNET  ·  Chain ID 11155111" vertex="1">
+          <mxGeometry height="1250" width="660" x="1390" y="150" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;div style=&quot;font-size:30px;font-weight:700;margin-bottom:14px&quot;&gt;Voting · Smart contract&lt;/div&gt;&lt;div style=&quot;font-size:22px;line-height:1.5&quot;&gt;Create, register and publish elections&lt;br&gt;Freeze rules and eligible wallets&lt;br&gt;Check time, eligibility and repeat votes&lt;br&gt;Record votes and emit events&lt;br&gt;Call TOM burnFrom atomically&lt;/div&gt;" data-source="contracts/contracts/Voting.sol" data-role="contract" id="voting">
+          <mxCell parent="sepolia" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;strokeWidth=2;fontFamily=Arial;fontColor=#203047;fontSize=22;align=left;verticalAlign=top;spacingTop=22;spacingLeft=22;spacingRight=18;spacingBottom=18;shadow=0;" vertex="1">
+            <mxGeometry height="350" width="580" x="40" y="160" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="&lt;div style=&quot;font-size:30px;font-weight:700;margin-bottom:14px&quot;&gt;TOM · ERC-20 Token&lt;/div&gt;&lt;div style=&quot;font-size:22px;line-height:1.5&quot;&gt;Existing Tom Token contract&lt;br&gt;approve: grant a spending allowance&lt;br&gt;balanceOf: read the voter balance&lt;br&gt;burnFrom: destroy 1 TOM per vote&lt;br&gt;Reduce balance and total supply&lt;/div&gt;" data-source="shared/sepolia.ts; shared/deployment.ts" data-role="token" id="tom">
+          <mxCell parent="sepolia" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;strokeWidth=2;fontFamily=Arial;fontColor=#203047;fontSize=22;align=left;verticalAlign=top;spacingTop=22;spacingLeft=22;spacingRight=18;spacingBottom=18;shadow=0;" vertex="1">
+            <mxGeometry height="280" width="580" x="40" y="650" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="chain_truth" parent="sepolia" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=22;fontColor=#203047;fontStyle=0;strokeColor=none;fillColor=none;" value="&lt;b&gt;On-chain source of truth&lt;/b&gt;&lt;br&gt;Election state and vote counts&lt;br&gt;Token balances and total supply&lt;br&gt;Transaction receipts and event logs&lt;br&gt;Successful vote: tally + burn in one transaction" vertex="1">
+          <mxGeometry height="250" width="580" x="40" y="960" as="geometry" />
+        </mxCell>
+        <mxCell id="vue_wallet" edge="1" parent="1" source="vue" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#B06B0E;fontFamily=Arial;fontSize=21;fontColor=#B06B0E;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=block;startFill=1;startSize=12;" target="metamask" value="Wallet requests&lt;br&gt;EIP-1193">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vue_api" edge="1" parent="1" source="vue" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=block;startFill=1;startSize=12;" target="express" value="HTTP API&lt;br&gt;Data + login">
+          <mxGeometry relative="1" x="-0.4444" y="80" as="geometry">
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wallet_chain" edge="1" parent="1" source="metamask" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#B06B0E;fontFamily=Arial;fontSize=21;fontColor=#B06B0E;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.168;entryDx=0;entryDy=0;" target="sepolia" value="Signed transactions&lt;br&gt;Sepolia ETH Gas">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-40" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="api_chain" edge="1" parent="1" source="express" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#456C9B;fontFamily=Arial;fontSize=21;fontColor=#456C9B;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=block;startFill=1;startSize=12;" value="Read-only JSON-RPC&lt;br&gt;Contract state · receipts · event logs">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-40" as="offset" />
+            <mxPoint x="1390" y="860.14" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="api_storage" edge="1" parent="1" source="express" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#588144;fontFamily=Arial;fontSize=21;fontColor=#588144;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=block;startFill=1;startSize=12;" target="sqlite" value="Read / write">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="90" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="voting_burn" edge="1" parent="1" source="voting" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#745388;fontFamily=Arial;fontSize=21;fontColor=#745388;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="tom" value="burnFrom(voter, 1 TOM)&lt;br&gt;Same voting transaction">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hardhat_build" edge="1" parent="1" source="hardhat" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#66727E;fontFamily=Arial;fontSize=21;fontColor=#66727E;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.36;exitDx=0;exitDy=0;entryX=1.021;entryY=0.827;entryDx=0;entryDy=0;dashed=1;dashPattern=8 5;entryPerimeter=0;" target="express" value="Compiled ABI +&lt;br&gt;deployment bytecode">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="-40" as="offset" />
+            <Array as="points">
+              <mxPoint x="759.86" y="1220.14" />
+              <mxPoint x="650.14" y="1220.14" />
+              <mxPoint x="650.14" y="977.86" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hardhat_cli" edge="1" parent="1" source="hardhat" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;endSize=12;strokeWidth=3;strokeColor=#66727E;fontFamily=Arial;fontSize=21;fontColor=#66727E;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;dashed=1;dashPattern=8 5;" value="Optional&lt;br&gt;CLI deployment">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-40" as="offset" />
+            <mxPoint x="1390" y="1280.14" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend_0" parent="1" style="rounded=0;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="24" width="24" x="80" y="1480" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_label_0" parent="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=21;fontColor=#203047;fontStyle=0;strokeColor=none;fillColor=none;" value="Frontend" vertex="1">
+          <mxGeometry height="35" width="320" x="118" y="1475" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_1" parent="1" style="rounded=0;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="24" width="24" x="480" y="1480" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_label_1" parent="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=21;fontColor=#203047;fontStyle=0;strokeColor=none;fillColor=none;" value="Wallet" vertex="1">
+          <mxGeometry height="35" width="320" x="518" y="1475" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_2" parent="1" style="rounded=0;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="24" width="24" x="880" y="1480" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_label_2" parent="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=21;fontColor=#203047;fontStyle=0;strokeColor=none;fillColor=none;" value="API / storage" vertex="1">
+          <mxGeometry height="35" width="320" x="918" y="1475" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_3" parent="1" style="rounded=0;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="24" width="24" x="1280" y="1480" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_label_3" parent="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=21;fontColor=#203047;fontStyle=0;strokeColor=none;fillColor=none;" value="On-chain" vertex="1">
+          <mxGeometry height="35" width="320" x="1318" y="1475" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_4" parent="1" style="rounded=0;html=1;fillColor=#F5F5F5;strokeColor=#666666;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="24" width="24" x="1680" y="1480" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_label_4" parent="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=21;fontColor=#203047;fontStyle=0;strokeColor=none;fillColor=none;" value="Tooling" vertex="1">
+          <mxGeometry height="35" width="320" x="1718" y="1475" as="geometry" />
+        </mxCell>
+        <mxCell id="runtime_path" parent="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=23;fontColor=#203047;fontStyle=1;strokeColor=none;fillColor=none;" value="Voting: Vue → MetaMask → Sepolia → Voting → TOM" vertex="1">
+          <mxGeometry height="35" width="1970" x="80" y="1540" as="geometry" />
+        </mxCell>
+        <mxCell id="read_path" parent="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=22;fontColor=#203047;fontStyle=0;strokeColor=none;fillColor=none;" value="Reading: Vue → Express → Sepolia.  Dashed arrows: build outputs and optional CLI deployment." vertex="1">
+          <mxGeometry height="35" width="1970" x="80" y="1590" as="geometry" />
+        </mxCell>
+        <mxCell id="source_note" parent="1" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=20;fontColor=#526579;fontStyle=0;strokeColor=none;fillColor=none;" value="Source-backed view of the current project. Application transactions are confirmed and signed through MetaMask." vertex="1">
+          <mxGeometry height="35" width="1970" x="80" y="1640" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

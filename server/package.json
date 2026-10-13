@@ -1,0 +1,13 @@
+{
+  "name": "@ballot/server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "check": "tsc -p tsconfig.json",
+    "test": "tsx --test test/*.test.ts",
+    "dev:sepolia": "tsx watch src/sepolia.ts",
+    "start:sepolia": "tsx src/sepolia.ts"
+  }
+}
