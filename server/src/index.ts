@@ -21,7 +21,7 @@ if (existsSync(staticRoot)) {
   app.use(express.static(staticRoot));
   app.get(/^(?!\/api).*/, (_req, res) => res.sendFile(resolve(staticRoot, 'index.html')));
 }
-const server = app.listen(Number(process.env.PORT ?? 3001), '127.0.0.1', () => console.log('Ballot API: http://127.0.0.1:3001'));
+const server = app.listen(Number(process.env.PORT ?? 3001), '0.0.0.0', () => console.log('Ballot API: http://127.0.0.1:3001'));
 const timer = setInterval(() => void chain.sync(), 3000);
 function stop() {
   clearInterval(timer); server.close(); chain.close(); store.close();

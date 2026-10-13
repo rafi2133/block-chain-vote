@@ -77,7 +77,7 @@ app.use((error: unknown, _req: express.Request, res: express.Response, _next: ex
     : error instanceof Error && !('code' in error) ? error.message : 'Sepolia is temporarily unavailable.' });
 });
 const port = Number(process.env.PORT ?? 3002);
-const server = app.listen(port, '127.0.0.1', () => console.log(`Sepolia API: http://127.0.0.1:${port}`));
+const server = app.listen(port, '0.0.0.0', () => console.log(`Sepolia API: http://127.0.0.1:${port}`));
 const timer = setInterval(() => void chain?.sync(), 15000);
 function stop() { clearInterval(timer); server.close(); provider.destroy(); chain?.close(); store?.close(); process.exit(0); }
 process.once('SIGINT', stop); process.once('SIGTERM', stop);
